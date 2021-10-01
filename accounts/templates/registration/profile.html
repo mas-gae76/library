@@ -1,0 +1,11 @@
+{% extends 'registration/base.html' %}
+{% block title %}Мой профиль{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+    <h1>Добро пожаловать, {{ user.first_name }}!</h1>
+    <p><a href="{% url 'index' %}">На главную</a></p>
+    <p><a href="{% url 'logout' %}">Выйти</a></p>
+    {% else %}
+        <p>Вы не авторизованы&nbsp;<a href="{% url 'login' %}">Авторизация</a></p>
+    {% endif %}
+{% endblock %}
