@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Главная{% endblock %}::Вся библиотека</title>
+</head>
+<body>
+    <header>
+    <h1>Библиотека</h1>
+    </header>
+    {% if not user.is_authenticated %}
+        <div>
+            <span title="Регистрация">
+             <a href="{% url 'signup' %}">Регистрация</a>
+        </span>
+            <span title="Вход" >
+            <a href="{% url 'login' %}">Вход</a>
+        </span>
+        </div>
+    {% else %}
+        <div>
+            <a href="{% url 'profile' %}">{{ user.username }}</a>
+        </div>
+    {% endif %}
+    <nav>
+        <p><a href="{% url 'index' %}">Главная</a></p>
+        <p><a href="{% url 'add' %}">Добавить</a></p>
+        {% for g in gs %}
+        <a href="{% url 'by_genre' g.pk %}">{{ g.name }}</a>
+        {% endfor %}
+    </nav>
+    <section>
+        {% block content %}
+        {% endblock %}
+    </section>
+</body>
+</html>
