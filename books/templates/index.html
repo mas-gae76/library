@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{#{% load thumbnail %}#}
 {% block content %}
     {% if cg %}
         <h2>Жанр: {{ cg }}</h2>
@@ -32,7 +31,7 @@
                     <p><a href="{% url 'edit' book.pk %}">Редактировать</a></p>
                     <p><a href="{% url 'delete' book.pk %}">Удалить</a></p>
                 </div>
-                <p><a href="#">{{ book.title }}</a></p>
+                <p><a href="{% url 'details' book.pk %}">{{ book.title }}</a></p>
                 <p>{{ book.author.all|join:", " }}</p>
                 <p>
                     {% for g in book.genre.all %}
