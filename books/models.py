@@ -1,4 +1,4 @@
-from django.db import models
+﻿from django.db import models
 from .functions import get_timestamp_path_book, get_timestamp_path_auth
 
 
@@ -43,6 +43,3 @@ class Books(models.Model):
 
     def __str__(self):
         return self.title
-
-    def delete(self, using=None, keep_parents=False):
-        self.image.delete()
