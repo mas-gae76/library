@@ -5,20 +5,37 @@
     {% if cg %}
         <h2>Жанр: {{ cg }}</h2>
     {% endif %}
-{% if bs|length == 0 %}
+{% if books_list|length == 0 %}
     <p>Пока ещё нет книг.</p>
 {% else %}
-    <div class="container" style="width: 70%">
-        {% for b in bs %}
-            <div style="margin: 20px; border: 2px dashed gray; padding: 15px">
+<form action="{% url 'index' %}" method="get">
+    <p><label>Фильтр по автору: <input type="text" value="{{ filter }}" name="filter"></label></p>
+    <input type="submit" name="submit" value="Отфильтровать">
+    <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Сортировка
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <button class="dropdown-item" name="orderby" value="title">По умолчанию</button>
+            <button class="dropdown-item" name="orderby" value="release_date">По возрастанию даты выпуска</button>
+            <button class="dropdown-item" name="orderby" value="-release_date">По убыванию даты выпуска</button>
+          </div>
+    </div>
+</form>
+    {% if filter %}
+        <h2>Автор: {{ filter }}</h2>
+    {% endif %}
+    <div class="container" style="margin: 0; width: 40%">
+        {% for book in books_list %}
+            <div style="margin: 15px 0 0 0; border: 2px dashed gray; padding: 15px">
                 <div style="float: right">
-                    <p><a href="{% url 'edit' b.pk %}">Редактировать</a></p>
-                    <p><a href="{% url 'delete' b.pk %}">Удалить</a></p>
+                    <p><a href="{% url 'edit' book.pk %}">Редактировать</a></p>
+                    <p><a href="{% url 'delete' book.pk %}">Удалить</a></p>
                 </div>
-                <p><a href="#">{{ b.title }}</a></p>
-                <p>{{ b.author.all|join:", " }}</p>
+                <p><a href="#">{{ book.title }}</a></p>
+                <p>{{ book.author.all|join:", " }}</p>
                 <p>
-                    {% for g in b.genre.all %}
+                    {% for g in book.genre.all %}
                         <a href="{% url 'by_genre' g.pk %}">{{ g.name }}</a>
                     {% endfor %}
                 </p>
