@@ -31,12 +31,24 @@ class MainView(ListView):
         return context
 
 
-def by_genre(request, genre_id):
-    books = Books.objects.filter(genre=genre_id)
-    genres = Genre.objects.all()
-    cur_genre = Genre.objects.get(pk=genre_id).name
-    context = {'bs': books, 'gs': genres, 'cg': cur_genre}
-    return render(request, 'index.html', context)
+class BookGenre(ListView):
+    model = Books
+    template_name = 'index.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Books.objects.filter(genre=self.kwargs['genre_id'])
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cg'] = Genre.objects.get(pk=self.kwargs['genre_id']).name
+        context['gs'] = Genre.objects.all()
+        return context
+
+
+def details(request, book_id):
+    book = get_object_or_404(Books, pk=book_id)
+    return render(request, 'details.html', {'book': book})
 
 
 def add(request):
