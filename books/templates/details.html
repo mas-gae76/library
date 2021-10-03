@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container" style="margin: 0; width: 50%">
+    <div style="margin: 15px 0 0 0; border: 2px solid gray; padding: 15px">
+        <div style="float: right">
+            <p><a href="{% url 'edit' book.pk %}">Редактировать</a></p>
+            <p><a href="{% url 'delete' book.pk %}">Удалить</a></p>
+        </div>
+        <p>{{ book.title }}</p>
+        {% for a in book.author.all %}
+                <img src="{{ a.image.url }}" width="100px" height="150px">
+        {% endfor %}
+        <p>{{ book.author.all|join:", " }}</p>
+        <img src="{{ book.image.url }}" width="100px" height="150px">
+        <p>Дата выпуска: {{ book.release_date|date:"Y" }} г.</p>
+        <p>{{ book.description }}</p>
+        <p>
+            {% for g in book.genre.all %}
+                <a href="{% url 'by_genre' g.pk %}">{{ g.name }}</a>
+            {% endfor %}
+        </p>
+    </div>
+</div>
+{% endblock %}
