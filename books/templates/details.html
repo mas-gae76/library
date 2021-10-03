@@ -5,7 +5,7 @@
     <div style="margin: 15px 0 0 0; border: 2px solid gray; padding: 15px">
         <div style="float: right">
             <p><a href="{% url 'edit' book.pk %}">Редактировать</a></p>
-            <p><a href="{% url 'delete' book.pk %}">Удалить</a></p>
+            <p><a href="{% url 'delete' book.pk %}" style="color: #e65252">Удалить</a></p>
         </div>
         <p>{{ book.title }}</p>
         {% for a in book.author.all %}
