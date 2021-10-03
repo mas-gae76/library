@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import *
 
 
@@ -8,5 +8,6 @@ urlpatterns = [
     path('add/', add, name='add'),
     path('delete/<int:book_id>/', delete, name='delete'),
     path('edit/<int:book_id>/', edit, name='edit'),
-    path('details/<int:book_id>/', details, name='details')
+    path('details/<int:book_id>/', details, name='details'),
+    path('api/', include('books.api.urls'))
 ]
