@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'books.apps.BooksConfig',
     'django_cleanup',
+    'rest_framework',
 ]
+
+REST_FRAMEWORK = dict(UNICODE_JSON=False)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
