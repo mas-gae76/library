@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'django_cleanup',
     'rest_framework',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = dict(UNICODE_JSON=False)
