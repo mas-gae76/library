@@ -4,10 +4,10 @@ from .views import *
 
 urlpatterns = [
     path('', MainView.as_view(), name='index'),
-    path('<int:genre_id>/', BookGenre.as_view(), name='by_genre'),
-    path('add/', add, name='add'),
-    path('delete/<int:book_id>/', delete, name='delete'),
-    path('edit/<int:book_id>/', edit, name='edit'),
-    path('details/<int:book_id>/', details, name='details'),
+    path('<int:pk>/', BookGenre.as_view(), name='by_genre'),
+    path('add/', CreateBookView.as_view(), name='add'),
+    path('delete/<int:pk>/', DeleteBookView.as_view(), name='delete'),
+    path('edit/<int:pk>/', UpdateBookView.as_view(), name='edit'),
+    path('details/<int:pk>/', BookDetailView.as_view(), name='details'),
     path('api/', include('books.api.urls'))
 ]
