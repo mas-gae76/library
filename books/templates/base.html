@@ -13,20 +13,7 @@
     <header>
     <h1>Библиотека</h1>
     </header>
-    {% if not user.is_authenticated %}
-        <div>
-            <span title="Регистрация">
-             <a href="{% url 'signup' %}">Регистрация</a>
-        </span>
-            <span title="Вход" >
-            <a href="{% url 'login' %}">Вход</a>
-        </span>
-        </div>
-    {% else %}
-        <div>
-            <a href="{% url 'profile' %}">{{ user.username }}</a>
-        </div>
-    {% endif %}
+    <p><a href="{% url 'profile' %}">Личный кабинет</a></p>
     <nav>
         <p><a href="{% url 'index' %}">Главная</a></p>
         <p><a href="{% url 'add' %}">Добавить</a></p>

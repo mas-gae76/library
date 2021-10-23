@@ -4,19 +4,19 @@
 <div class="container" style="margin: 0; width: 50%">
     <div style="margin: 15px 0 0 0; border: 2px solid gray; padding: 15px">
         <div style="float: right">
-            <p><a href="{% url 'edit' book.pk %}">Редактировать</a></p>
-            <p><a href="{% url 'delete' book.pk %}" style="color: #e65252">Удалить</a></p>
+            <p><a href="{% url 'edit' books.pk %}">Редактировать</a></p>
+            <p><a href="{% url 'delete' books.pk %}" style="color: #e65252">Удалить</a></p>
         </div>
-        <p>{{ book.title }}</p>
-        {% for a in book.author.all %}
+        <p>{{ books.title }}</p>
+        {% for a in books.author.all %}
                 <img src="{{ a.image.url }}" width="100px" height="150px">
         {% endfor %}
-        <p>{{ book.author.all|join:", " }}</p>
-        <img src="{{ book.image.url }}" width="100px" height="150px">
-        <p>Дата выпуска: {{ book.release_date|date:"Y" }} г.</p>
-        <p>{{ book.description }}</p>
+        <p>{{ books.author.all|join:", " }}</p>
+        <img src="{{ books.image.url }}" width="100px" height="150px">
+        <p>Дата выпуска: {{ books.release_date|date:"Y" }} г.</p>
+        <p>{{ books.description }}</p>
         <p>
-            {% for g in book.genre.all %}
+            {% for g in books.genre.all %}
                 <a href="{% url 'by_genre' g.pk %}">{{ g.name }}</a>
             {% endfor %}
         </p>

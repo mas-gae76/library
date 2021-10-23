@@ -3,14 +3,10 @@
 {% block content %}
 <h1>Редактирование книги</h1>
 <div class="form">
-{% if user.is_authenticated %}
 <form method="post" enctype= "multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Править">
 </form>
-{% else %}
-    Вы не авторизованы <a href="{% url 'login' %}">Авторизация</a>
-{% endif %}
 </div>
 {% endblock %}
